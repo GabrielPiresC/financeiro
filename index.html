@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle Financeiro</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="app-container">
+        <h1>Controlador Financeiro</h1>
+        <form class="form-financeiro">
+            <div class="descricao">
+                <label for="add-descricao">Descrição:</label>
+                <input type="text" id="add-descricao" name="descricao" placeholder="Descreva aqui.">
+            </div>
 
+            <div class="valor">
+                <label for="add-valor">Valor:</label>
+                <input type="number" id="add-valor" name="valor" placeholder="Digite o valor aqui."/>
+            </div>
+            
+            <div class="categoria">
+                <label for="add-categoria">Escolha uma categoria:</label>
+                <select id="add-categoria" name="categoria">
+                    <option value="mer">Mercado</option>
+                    <option value="mor">Moradia</option>
+                    <option value="trans">Transporte</option>
+                    <option value="con-luz">Conta de luz</option>
+                    <option value="con-agua">Conta de água</option>
+                    <option value="con-inter">Conta de internet</option>
+                    <option value="con-gas">Conta de gás</option>
+                    <option value="laz">Lazer</option>
+                </select>
+            </div>
+
+            <div class="tipo">
+                <label for="add-tipo">Tipo:</label>
+                <select id="add-tipo" name="tipo">
+                    <option value="rec">Receita</option>
+                    <option value="des">Despesa</option>
+                </select>
+            </div>
+
+            <div class="data">
+                <label for="add-data"></label>
+                <input id="add-data" type="date"/>
+            </div>
+
+            
+            
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
-
 </html>
