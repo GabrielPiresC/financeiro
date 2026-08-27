@@ -14,41 +14,47 @@
                 <label for="add-descricao">Descrição:</label>
                 <input type="text" id="add-descricao" name="descricao" placeholder="Descreva aqui.">
             </div>
-
             <div class="valor">
                 <label for="add-valor">Valor:</label>
-                <input type="number" id="add-valor" name="valor" placeholder="Digite o valor aqui."/>
+                <input type="number" id="add-valor" name="valor" step="0.01" placeholder="Digite o valor aqui."/>
             </div>
-            
             <div class="categoria">
                 <label for="add-categoria">Escolha uma categoria:</label>
                 <select id="add-categoria" name="categoria">
-                    <option value="mer">Mercado</option>
-                    <option value="mor">Moradia</option>
-                    <option value="trans">Transporte</option>
-                    <option value="con-luz">Conta de luz</option>
-                    <option value="con-agua">Conta de água</option>
-                    <option value="con-inter">Conta de internet</option>
-                    <option value="con-gas">Conta de gás</option>
-                    <option value="laz">Lazer</option>
+                    <option value="mercado">Mercado</option>
+                    <option value="moradia">Moradia</option>
+                    <option value="transporte">Transporte</option>
+                    <option value="conta-luz">Conta de luz</option>
+                    <option value="conta-agua">Conta de água</option>
+                    <option value="conta-internet">Conta de internet</option>
+                    <option value="conta-gas">Conta de gás</option>
+                    <option value="carro">Contas do carro</option>
+                    <option value="celular1">Celular 1</option>
+                    <option value="celular2">Celular 2</option>
+                    <option value="assinaturas">Assinaturas</option>
+                    <option value="esportes">Esportes</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="escola">Escola</option>
+                    <option value="outros">Outros</option>
+                    <option value="salario1">Salário 1</option>
+                    <option value="salario2">Salário 2</option>
+                    <option value="cartao">Cartão de crédito</option>
                 </select>
             </div>
-
             <div class="tipo">
                 <label for="add-tipo">Tipo:</label>
                 <select id="add-tipo" name="tipo">
-                    <option value="rec">Receita</option>
-                    <option value="des">Despesa</option>
+                    <option value="receita">Receita</option>
+                    <option value="despesa">Despesa</option>
                 </select>
             </div>
-
             <div class="data">
-                <label for="add-data"></label>
-                <input id="add-data" type="date"/>
+                <label for="add-data">Data:</label>
+                <input id="add-data" type="date" name="data"/>
             </div>
-
-            
-            
+            <div class="button">
+                <button type="submit" id="add-btn">Adicionar</button>
+            </div>
         </form>
     </div>
     <script src="script.js"></script>
