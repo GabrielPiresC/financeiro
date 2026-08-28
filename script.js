@@ -31,4 +31,42 @@ formFinanceiro.addEventListener("submit", function (event){
     const celulaTipo = document.createElement("td");
     const celulaCategoria = document.createElement("td");
     const celulaData = document.createElement("td");
+
+    celulaDescricao.textContent = novaTransacao.descricao;
+    celulaValor.textContent = novaTransacao.valor;
+    celulaTipo.textContent = novaTransacao.tipo;
+    celulaCategoria.textContent = novaTransacao.categoria;
+    celulaData.textContent = novaTransacao.data;
+    
+    primeiraLinha.appendChild(celulaDescricao);
+    primeiraLinha.appendChild(celulaValor);
+    primeiraLinha.appendChild(celulaTipo);
+    primeiraLinha.appendChild(celulaCategoria);
+    primeiraLinha.appendChild(celulaData);
+    corpoTabela.appendChild(primeiraLinha);
+    formFinanceiro.reset();
+
+    const despesas = transacoes.filter(function(transacao) {
+        if (transacao.tipo === "despesa") {
+            return true
+        }
+    });
+
+    const totalDespesas = despesas.reduce(function(acumulador, valorAtual) {
+        return acumulador + valorAtual.valor;
+    }, 0);
+
+    const receitas = transacoes.filter(function(transacao) {
+        if (transacao.tipo === "receita") {
+            return true
+        }
+    });
+
+    const totalReceitas = receitas.reduce(function(acumulador, valorAtual) {
+        return acumulador + valorAtual.valor;
+    }, 0);
+
+    const saldo = (totalReceitas - totalDespesas)
+
+    
 });
