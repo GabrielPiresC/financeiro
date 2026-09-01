@@ -68,8 +68,13 @@ formFinanceiro.addEventListener("submit", function (event){
         });
 
         const transacaoEmEdicao = transacoes[indiceTransacao];
+        transacaoEmEdicao.descricao = descricao;
+        transacaoEmEdicao.valor = valor;
+        transacaoEmEdicao.tipo = tipo;
+        transacaoEmEdicao.categoria = categoria;
+        transacaoEmEdicao.data = data;
 
-
+        console.log(transacoes);
 
     } else {
         const novaTransacao = {
