@@ -66,6 +66,11 @@ formFinanceiro.addEventListener("submit", function (event){
                 return true;
             }
         });
+
+        const transacaoEmEdicao = transacoes[indiceTransacao];
+
+
+
     } else {
         const novaTransacao = {
             id: contadorId++,
@@ -77,58 +82,57 @@ formFinanceiro.addEventListener("submit", function (event){
         };
         
         transacoes.push(novaTransacao);
-    }
+        console.log(transacoes);
 
-    const primeiraLinha = document.createElement("tr");
-    const celulaDescricao = document.createElement("td");
-    const celulaValor = document.createElement("td");
-    const celulaTipo = document.createElement("td");
-    const celulaCategoria = document.createElement("td");
-    const celulaData = document.createElement("td");
-    const celulaAcoes = document.createElement("td");
+        const primeiraLinha = document.createElement("tr");
+        const celulaDescricao = document.createElement("td");
+        const celulaValor = document.createElement("td");
+        const celulaTipo = document.createElement("td");
+        const celulaCategoria = document.createElement("td");
+        const celulaData = document.createElement("td");
+        const celulaAcoes = document.createElement("td");
 
-    const botaoExcluir = document.createElement("button");
-    const botaoEditar = document.createElement("button");
+        const botaoExcluir = document.createElement("button");
+        const botaoEditar = document.createElement("button");
 
-    celulaDescricao.textContent = novaTransacao.descricao;
-    celulaValor.textContent = formatarMoeda(novaTransacao.valor);
-    celulaTipo.textContent = novaTransacao.tipo;
-    celulaCategoria.textContent = novaTransacao.categoria;
-    celulaData.textContent = formatarData(novaTransacao.data);
-    botaoExcluir.textContent = "Excluir";
-    botaoEditar.textContent = "Editar";
-    
-    primeiraLinha.appendChild(celulaDescricao);
-    primeiraLinha.appendChild(celulaValor);
-    primeiraLinha.appendChild(celulaTipo);
-    primeiraLinha.appendChild(celulaCategoria);
-    primeiraLinha.appendChild(celulaData);
-    primeiraLinha.appendChild(celulaAcoes);
-    celulaAcoes.appendChild(botaoExcluir);
-    celulaAcoes.appendChild(botaoEditar);
-    corpoTabela.appendChild(primeiraLinha);
-    atualizarTotais();
-    formFinanceiro.reset();
-
-    botaoExcluir.addEventListener("click", function() {
-        const indiceTransacao = transacoes.findIndex(function(transacao) {
-            if (transacao.id === novaTransacao.id) {
-                return true;
-            }
-        });
-        transacoes.splice(indiceTransacao, 1);
-        primeiraLinha.remove();
+        celulaDescricao.textContent = novaTransacao.descricao;
+        celulaValor.textContent = formatarMoeda(novaTransacao.valor);
+        celulaTipo.textContent = novaTransacao.tipo;
+        celulaCategoria.textContent = novaTransacao.categoria;
+        celulaData.textContent = formatarData(novaTransacao.data);
+        botaoExcluir.textContent = "Excluir";
+        botaoEditar.textContent = "Editar";
+        
+        primeiraLinha.appendChild(celulaDescricao);
+        primeiraLinha.appendChild(celulaValor);
+        primeiraLinha.appendChild(celulaTipo);
+        primeiraLinha.appendChild(celulaCategoria);
+        primeiraLinha.appendChild(celulaData);
+        primeiraLinha.appendChild(celulaAcoes);
+        celulaAcoes.appendChild(botaoExcluir);
+        celulaAcoes.appendChild(botaoEditar);
+        corpoTabela.appendChild(primeiraLinha);
         atualizarTotais();
-    });
+        formFinanceiro.reset();
 
-    botaoEditar.addEventListener("click", function() {
-        idTransacaoEditando = novaTransacao.id;
-        inputDescricao.value = novaTransacao.descricao;
-        inputValor.value = novaTransacao.valor;
-        selectTipo.value = novaTransacao.tipo;
-        selectCategoria.value = novaTransacao.categoria;
-        inputData.value = novaTransacao.data;
+        botaoExcluir.addEventListener("click", function() {
+            const indiceTransacao = transacoes.findIndex(function(transacao) {
+                if (transacao.id === novaTransacao.id) {
+                    return true;
+                }
+            });
+            transacoes.splice(indiceTransacao, 1);
+            primeiraLinha.remove();
+            atualizarTotais();
+        });
 
-    });
-
+        botaoEditar.addEventListener("click", function() {
+            idTransacaoEditando = novaTransacao.id;
+            inputDescricao.value = novaTransacao.descricao;
+            inputValor.value = novaTransacao.valor;
+            selectTipo.value = novaTransacao.tipo;
+            selectCategoria.value = novaTransacao.categoria;
+            inputData.value = novaTransacao.data;
+        });
+    }
 });
