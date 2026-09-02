@@ -74,7 +74,15 @@ formFinanceiro.addEventListener("submit", function (event){
         transacaoEmEdicao.categoria = categoria;
         transacaoEmEdicao.data = data;
 
-        console.log(transacoes);
+        const linhaEmEdicao = corpoTabela.querySelector(`tr[data-id="${idTransacaoEditando}"]`);
+        linhaEmEdicao.children[0].textContent = descricao;
+        linhaEmEdicao.children[1].textContent = formatarMoeda(valor);
+        linhaEmEdicao.children[2].textContent = tipo;
+        linhaEmEdicao.children[3].textContent = categoria;
+        linhaEmEdicao.children[4].textContent = formatarData(data);
+        idTransacaoEditando = null;
+        atualizarTotais();
+        formFinanceiro.reset();
 
     } else {
         const novaTransacao = {
@@ -90,6 +98,8 @@ formFinanceiro.addEventListener("submit", function (event){
         console.log(transacoes);
 
         const primeiraLinha = document.createElement("tr");
+        primeiraLinha.dataset.id = novaTransacao.id;
+
         const celulaDescricao = document.createElement("td");
         const celulaValor = document.createElement("td");
         const celulaTipo = document.createElement("td");
