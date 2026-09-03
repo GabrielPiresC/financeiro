@@ -54,6 +54,13 @@
                 <label for="add-data">Data:</label>
                 <input id="add-data" type="date" name="data"/>
             </div>
+            <div class="responsavel">
+                <label for="add-responsavel">Responsável:</label>
+                <select id="add-responsavel" name="responsavel">
+                    <option value="marido">Marido</option>
+                    <option value="esposa">Esposa</option>
+                </select>
+            </div>
             <div class="button">
                 <button type="submit" id="add-btn">Adicionar</button>
             </div>
@@ -68,7 +75,7 @@
             Saldo:<span id="saldo"></span>
         </div>
         <div class="listagem">
-            <table id="listagem-table" name="listagem">
+            <table id="listagem-table-marido" name="listagem-marido">
                 <thead>
                     <tr>
                         <th>Descrição</th>
@@ -76,10 +83,27 @@
                         <th>Tipo</th>
                         <th>Categoria</th>
                         <th>Data</th>
+                        <th>Responsável</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="listagem-body">
+                <tbody id="listagem-body-marido">
+                    <!-- As linhas da tabela serão adicionadas dinamicamente aqui -->
+                </tbody>
+            </table>
+            <table id="listagem-table-esposa" name="listagem-esposa">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Data</th>
+                        <th>Responsável</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listagem-body-esposa">
                     <!-- As linhas da tabela serão adicionadas dinamicamente aqui -->
                 </tbody>
             </table>

@@ -7,10 +7,12 @@ const inputValor = document.getElementById("add-valor");
 const selectTipo = document.getElementById("add-tipo");
 const selectCategoria = document.getElementById("add-categoria");
 const inputData = document.getElementById("add-data");
-const corpoTabela = document.getElementById("listagem-body");
+const corpoTabelaMarido = document.getElementById("listagem-body-marido");
+const corpoTabelaEsposa = document.getElementById("listagem-body-esposa");
 const totalDespesasElement = document.getElementById("total-despesas");
 const totalReceitasElement = document.getElementById("total-receitas");
 const saldoElement = document.getElementById("saldo");
+const selectResponsavel = document.getElementById("add-responsavel");
 
 function formatarMoeda(valor) {
     return new Intl.NumberFormat('pt-BR', {
@@ -55,12 +57,12 @@ function atualizarTotais() {
 function adicionarTransacaoNaTabela(transacao) {
     const primeiraLinha = document.createElement("tr");
     primeiraLinha.dataset.id = transacao.id;
-
     const celulaDescricao = document.createElement("td");
     const celulaValor = document.createElement("td");
     const celulaTipo = document.createElement("td");
     const celulaCategoria = document.createElement("td");
     const celulaData = document.createElement("td");
+    const celulaResponsavel = document.createElement("td");
     const celulaAcoes = document.createElement("td");
     const botaoExcluir = document.createElement("button");
     const botaoEditar = document.createElement("button");
@@ -70,6 +72,7 @@ function adicionarTransacaoNaTabela(transacao) {
     celulaTipo.textContent = transacao.tipo;
     celulaCategoria.textContent = transacao.categoria;
     celulaData.textContent = formatarData(transacao.data);
+    celulaResponsavel.textContent = transacao.responsavel;
     botaoExcluir.textContent = "Excluir";
     botaoEditar.textContent = "Editar";
 
@@ -78,10 +81,16 @@ function adicionarTransacaoNaTabela(transacao) {
     primeiraLinha.appendChild(celulaTipo);
     primeiraLinha.appendChild(celulaCategoria);
     primeiraLinha.appendChild(celulaData);
+    primeiraLinha.appendChild(celulaResponsavel);
     primeiraLinha.appendChild(celulaAcoes);
     celulaAcoes.appendChild(botaoExcluir);
     celulaAcoes.appendChild(botaoEditar);
-    corpoTabela.appendChild(primeiraLinha);
+    
+    if (transacao.responsavel === "marido") {
+        corpoTabelaMarido.appendChild(primeiraLinha);
+    } else {
+        corpoTabelaEsposa.appendChild(primeiraLinha);
+    }
 
     botaoExcluir.addEventListener("click", function() {
         const indiceTransacao = transacoes.findIndex(function(item) {
@@ -101,6 +110,7 @@ function adicionarTransacaoNaTabela(transacao) {
         selectTipo.value = transacao.tipo;
         selectCategoria.value = transacao.categoria;
         inputData.value = transacao.data;
+        selectResponsavel.value = transacao.responsavel;
     });
 
 }
@@ -112,6 +122,7 @@ formFinanceiro.addEventListener("submit", function (event){
     const tipo = selectTipo.value;
     const categoria = selectCategoria.value;
     const data = inputData.value;
+    const responsavel = selectResponsavel.value;
 
     if (idTransacaoEditando !== null) {
         const indiceTransacao = transacoes.findIndex(function(transacao) {
@@ -127,12 +138,20 @@ formFinanceiro.addEventListener("submit", function (event){
         transacaoEmEdicao.categoria = categoria;
         transacaoEmEdicao.data = data;
 
+        const responsavelAnterior = transacaoEmEdicao.responsavel;
+            if (responsavelAnterior !== responsavel) {
+
+
+                
+        transacaoEmEdicao.responsavel = responsavel;
+
         const linhaEmEdicao = corpoTabela.querySelector(`tr[data-id="${idTransacaoEditando}"]`);
         linhaEmEdicao.children[0].textContent = descricao;
         linhaEmEdicao.children[1].textContent = formatarMoeda(valor);
         linhaEmEdicao.children[2].textContent = tipo;
         linhaEmEdicao.children[3].textContent = categoria;
         linhaEmEdicao.children[4].textContent = formatarData(data);
+        linhaEmEdicao.children[5].textContent = responsavel;
         idTransacaoEditando = null;
         atualizarTotais();
         formFinanceiro.reset();
@@ -145,6 +164,7 @@ formFinanceiro.addEventListener("submit", function (event){
             tipo,
             categoria,
             data,
+            responsavel,
         };
         
         transacoes.push(novaTransacao);
