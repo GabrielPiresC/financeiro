@@ -52,6 +52,59 @@ function atualizarTotais() {
     saldoElement.textContent = formatarMoeda(saldo);
 }
 
+function adicionarTransacaoNaTabela(transacao) {
+    const primeiraLinha = document.createElement("tr");
+    primeiraLinha.dataset.id = transacao.id;
+
+    const celulaDescricao = document.createElement("td");
+    const celulaValor = document.createElement("td");
+    const celulaTipo = document.createElement("td");
+    const celulaCategoria = document.createElement("td");
+    const celulaData = document.createElement("td");
+    const celulaAcoes = document.createElement("td");
+    const botaoExcluir = document.createElement("button");
+    const botaoEditar = document.createElement("button");
+
+    celulaDescricao.textContent = transacao.descricao;
+    celulaValor.textContent = formatarMoeda(transacao.valor);
+    celulaTipo.textContent = transacao.tipo;
+    celulaCategoria.textContent = transacao.categoria;
+    celulaData.textContent = formatarData(transacao.data);
+    botaoExcluir.textContent = "Excluir";
+    botaoEditar.textContent = "Editar";
+
+    primeiraLinha.appendChild(celulaDescricao);
+    primeiraLinha.appendChild(celulaValor);
+    primeiraLinha.appendChild(celulaTipo);
+    primeiraLinha.appendChild(celulaCategoria);
+    primeiraLinha.appendChild(celulaData);
+    primeiraLinha.appendChild(celulaAcoes);
+    celulaAcoes.appendChild(botaoExcluir);
+    celulaAcoes.appendChild(botaoEditar);
+    corpoTabela.appendChild(primeiraLinha);
+
+    botaoExcluir.addEventListener("click", function() {
+        const indiceTransacao = transacoes.findIndex(function(item) {
+            if (transacao.id === item.id) {
+                return true;
+            }
+        });
+        transacoes.splice(indiceTransacao, 1);
+        primeiraLinha.remove();
+        atualizarTotais();
+    });
+
+    botaoEditar.addEventListener("click", function() {
+        idTransacaoEditando = transacao.id;
+        inputDescricao.value = transacao.descricao;
+        inputValor.value = transacao.valor;
+        selectTipo.value = transacao.tipo;
+        selectCategoria.value = transacao.categoria;
+        inputData.value = transacao.data;
+    });
+
+}
+
 formFinanceiro.addEventListener("submit", function (event){
     event.preventDefault();
     const descricao = inputDescricao.value;
@@ -95,59 +148,8 @@ formFinanceiro.addEventListener("submit", function (event){
         };
         
         transacoes.push(novaTransacao);
-        console.log(transacoes);
-
-        const primeiraLinha = document.createElement("tr");
-        primeiraLinha.dataset.id = novaTransacao.id;
-
-        const celulaDescricao = document.createElement("td");
-        const celulaValor = document.createElement("td");
-        const celulaTipo = document.createElement("td");
-        const celulaCategoria = document.createElement("td");
-        const celulaData = document.createElement("td");
-        const celulaAcoes = document.createElement("td");
-
-        const botaoExcluir = document.createElement("button");
-        const botaoEditar = document.createElement("button");
-
-        celulaDescricao.textContent = novaTransacao.descricao;
-        celulaValor.textContent = formatarMoeda(novaTransacao.valor);
-        celulaTipo.textContent = novaTransacao.tipo;
-        celulaCategoria.textContent = novaTransacao.categoria;
-        celulaData.textContent = formatarData(novaTransacao.data);
-        botaoExcluir.textContent = "Excluir";
-        botaoEditar.textContent = "Editar";
-        
-        primeiraLinha.appendChild(celulaDescricao);
-        primeiraLinha.appendChild(celulaValor);
-        primeiraLinha.appendChild(celulaTipo);
-        primeiraLinha.appendChild(celulaCategoria);
-        primeiraLinha.appendChild(celulaData);
-        primeiraLinha.appendChild(celulaAcoes);
-        celulaAcoes.appendChild(botaoExcluir);
-        celulaAcoes.appendChild(botaoEditar);
-        corpoTabela.appendChild(primeiraLinha);
+        adicionarTransacaoNaTabela(novaTransacao);        
         atualizarTotais();
         formFinanceiro.reset();
-
-        botaoExcluir.addEventListener("click", function() {
-            const indiceTransacao = transacoes.findIndex(function(transacao) {
-                if (transacao.id === novaTransacao.id) {
-                    return true;
-                }
-            });
-            transacoes.splice(indiceTransacao, 1);
-            primeiraLinha.remove();
-            atualizarTotais();
-        });
-
-        botaoEditar.addEventListener("click", function() {
-            idTransacaoEditando = novaTransacao.id;
-            inputDescricao.value = novaTransacao.descricao;
-            inputValor.value = novaTransacao.valor;
-            selectTipo.value = novaTransacao.tipo;
-            selectCategoria.value = novaTransacao.categoria;
-            inputData.value = novaTransacao.data;
-        });
     }
 });
