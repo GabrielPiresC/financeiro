@@ -138,14 +138,19 @@ formFinanceiro.addEventListener("submit", function (event){
         transacaoEmEdicao.categoria = categoria;
         transacaoEmEdicao.data = data;
 
+        const linhaEmEdicao = document.querySelector(`tr[data-id="${idTransacaoEditando}"]`);
+
         const responsavelAnterior = transacaoEmEdicao.responsavel;
             if (responsavelAnterior !== responsavel) {
-
-
+                if (responsavel === "marido") {
+                    corpoTabelaMarido.appendChild(linhaEmEdicao)
+                } else {
+                    corpoTabelaEsposa.appendChild(linhaEmEdicao)
+                }
+            }
                 
         transacaoEmEdicao.responsavel = responsavel;
 
-        const linhaEmEdicao = corpoTabela.querySelector(`tr[data-id="${idTransacaoEditando}"]`);
         linhaEmEdicao.children[0].textContent = descricao;
         linhaEmEdicao.children[1].textContent = formatarMoeda(valor);
         linhaEmEdicao.children[2].textContent = tipo;
