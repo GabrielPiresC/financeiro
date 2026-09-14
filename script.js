@@ -14,6 +14,10 @@ const totalReceitasElement = document.getElementById("total-receitas");
 const saldoElement = document.getElementById("saldo");
 const selectResponsavel = document.getElementById("add-responsavel");
 
+function salvarTransacoes() {
+    localStorage.setItem("transacoes", JSON.stringify(transacoes))
+}
+
 function formatarMoeda(valor) {
     return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -101,6 +105,7 @@ function adicionarTransacaoNaTabela(transacao) {
         transacoes.splice(indiceTransacao, 1);
         primeiraLinha.remove();
         atualizarTotais();
+        salvarTransacoes();
     });
 
     botaoEditar.addEventListener("click", function() {
@@ -160,6 +165,7 @@ formFinanceiro.addEventListener("submit", function (event){
         idTransacaoEditando = null;
         atualizarTotais();
         formFinanceiro.reset();
+        salvarTransacoes();
 
     } else {
         const novaTransacao = {
@@ -173,6 +179,7 @@ formFinanceiro.addEventListener("submit", function (event){
         };
         
         transacoes.push(novaTransacao);
+        salvarTransacoes();
         adicionarTransacaoNaTabela(novaTransacao);        
         atualizarTotais();
         formFinanceiro.reset();
