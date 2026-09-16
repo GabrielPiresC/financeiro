@@ -13,6 +13,17 @@ const totalDespesasElement = document.getElementById("total-despesas");
 const totalReceitasElement = document.getElementById("total-receitas");
 const saldoElement = document.getElementById("saldo");
 const selectResponsavel = document.getElementById("add-responsavel");
+let transacoesSalvas = localStorage.getItem("transacoes");
+
+if (transacoesSalvas !== null) {
+       transacoes = JSON.parse(transacoesSalvas)
+}
+
+transacoes.forEach(function(transacao) {
+    adicionarTransacaoNaTabela(transacao);
+})
+
+atualizarTotais();
 
 function salvarTransacoes() {
     localStorage.setItem("transacoes", JSON.stringify(transacoes))
