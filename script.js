@@ -19,6 +19,16 @@ if (transacoesSalvas !== null) {
        transacoes = JSON.parse(transacoesSalvas)
 }
 
+const maiorId = transacoes.reduce(function(maiorId, transacao) {
+    if (transacao.id > maiorId) {
+        return transacao.id
+    } else {
+        return maiorId
+    }
+}, 0)
+
+contadorId = maiorId +1;
+
 transacoes.forEach(function(transacao) {
     adicionarTransacaoNaTabela(transacao);
 })
@@ -196,4 +206,3 @@ formFinanceiro.addEventListener("submit", function (event){
         formFinanceiro.reset();
     }
 });
-
