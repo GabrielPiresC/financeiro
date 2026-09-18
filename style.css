@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #D3D3D3;
+    color: #000;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin:auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 35px;
+}
+
+.form-financeiro {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 35px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-financeiro label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-financeiro input,
+.form-financeiro select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form-financeiro button {
+    grid-column: 1 / -1;
+    padding: 15px;
+    background-color: #535353;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
