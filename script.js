@@ -100,6 +100,9 @@ function adicionarTransacaoNaTabela(transacao) {
     celulaResponsavel.textContent = transacao.responsavel;
     botaoExcluir.textContent = "Excluir";
     botaoEditar.textContent = "Editar";
+    botaoExcluir.className = "btn-excluir";
+    botaoEditar.className = "btn-editar";
+    celulaAcoes.className = "celula-acoes";
 
     primeiraLinha.appendChild(celulaDescricao);
     primeiraLinha.appendChild(celulaValor);

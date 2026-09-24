@@ -133,3 +133,19 @@ h1 {
     cursor: pointer;
     font-size: 12px;
 }
+
+.btn-excluir {
+    background-color: red;
+    color: #fff;
+}
+
+.btn-editar {
+    background-color: #535353;
+    color: #fff;
+}
+
+.celula-acoes {
+    display: flex;
+    gap: 5px;
+}
+
