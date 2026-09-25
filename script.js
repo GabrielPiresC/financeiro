@@ -89,8 +89,10 @@ function adicionarTransacaoNaTabela(transacao) {
     const celulaData = document.createElement("td");
     const celulaResponsavel = document.createElement("td");
     const celulaAcoes = document.createElement("td");
+    const containerAcoes = document.createElement("div");
     const botaoExcluir = document.createElement("button");
     const botaoEditar = document.createElement("button");
+
 
     celulaDescricao.textContent = transacao.descricao;
     celulaValor.textContent = formatarMoeda(transacao.valor);
@@ -103,6 +105,7 @@ function adicionarTransacaoNaTabela(transacao) {
     botaoExcluir.className = "btn-excluir";
     botaoEditar.className = "btn-editar";
     celulaAcoes.className = "celula-acoes";
+    containerAcoes.className = "container-acoes";
 
     primeiraLinha.appendChild(celulaDescricao);
     primeiraLinha.appendChild(celulaValor);
@@ -111,8 +114,9 @@ function adicionarTransacaoNaTabela(transacao) {
     primeiraLinha.appendChild(celulaData);
     primeiraLinha.appendChild(celulaResponsavel);
     primeiraLinha.appendChild(celulaAcoes);
-    celulaAcoes.appendChild(botaoExcluir);
-    celulaAcoes.appendChild(botaoEditar);
+    containerAcoes.appendChild(botaoExcluir);
+    containerAcoes.appendChild(botaoEditar);
+    celulaAcoes.appendChild(containerAcoes);
     
     if (transacao.responsavel === "marido") {
         corpoTabelaMarido.appendChild(primeiraLinha);
